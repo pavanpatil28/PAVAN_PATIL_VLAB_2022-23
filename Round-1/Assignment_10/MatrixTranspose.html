@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <link rel="icon" href="Images/icon_2.png">
+    
+    <title>Matrix Operations</title>
+    
+</head>
+<body>
+    <h1 class="m-5 text-center fw-bold">Matrix Operations</h1>
+
+    <div class="mt-4 ms-4 mb-4">
+        <h3 class="mb-4">Matrix Transpose</h3>
+        <label class="fs-4 me-4" for="rows">Enter the Number of Rows : </label>
+        <input class="fs-4 ms-3 w-25 h-25" type="number" id="rows" required><br>
+
+        <label class="fs-4 mt-4" for="columns">Enter the Number of Columns : </label>
+        <input class="w-25"  type="number" id="columns" required><br>
+
+        <div class="m-5 text-center">
+            <button type="button" class="btn btn-dark p-2" onclick="createMatrix()"><h4>Create Matrices</h4></button>
+        </div>
+    </div>
+
+    <div id="matrixInput"></div>
+
+    <div class="m-5 text-center">
+        <button type="button" class="btn btn-dark ms-4 p-2" onclick="calculateTranspose()"><h4>Calculate Transpose</h4></button>
+    </div>
+
+    <div class="text-center mt-4">
+        <p class="fs-4" id="result"></p>
+    </div>
+
+    <script>
+        let matrix = [];
+
+        function createMatrix() {
+            const rows = parseInt(document.getElementById("rows").value);
+            const columns = parseInt(document.getElementById("columns").value);
+
+            // Create input fields for the matrix
+            let matrixInputHTML = `<h3 class=" ms-4 mb-3">Matrix</h3>`;
+            for (let row = 0; row < rows; row++) {
+                for (let col = 0; col < columns; col++) {
+                    matrixInputHTML += `<input class=" ms-4 mb-3" type="number" id="matrix-row${row}-col${col}" placeholder="Enter element (${row + 1},${col + 1})"> `;
+                }
+                matrixInputHTML += "<br>";
+            }
+
+            document.getElementById("matrixInput").innerHTML = matrixInputHTML;
+        }
+
+        function calculateTranspose() {
+            const rows = parseInt(document.getElementById("rows").value);
+            const columns = parseInt(document.getElementById("columns").value);
+
+            // Get elements from the input fields and form the matrix
+            for (let row = 0; row < rows; row++) {
+                matrix.push([]);
+                for (let col = 0; col < columns; col++) {
+                    const element = parseFloat(document.getElementById(`matrix-row${row}-col${col}`).value);
+                    matrix[row].push(element);
+                }
+            }
+
+            // Calculate the transpose
+            let transposeMatrix = [];
+            for (let col = 0; col < columns; col++) {
+                transposeMatrix.push([]);
+                for (let row = 0; row < rows; row++) {
+                    transposeMatrix[col].push(matrix[row][col]);
+                }
+            }
+
+            // Display the result
+            let resultHTML = "<h3>Transpose Matrix</h3>";
+            for (let row = 0; row < columns; row++) {
+                for (let col = 0; col < rows; col++) {
+                    resultHTML += transposeMatrix[row][col] + " ";
+                }
+                resultHTML += "<br>";
+            }
+
+            document.getElementById("result").innerHTML = resultHTML;
+        }
+    </script>
+</body>
+</html>

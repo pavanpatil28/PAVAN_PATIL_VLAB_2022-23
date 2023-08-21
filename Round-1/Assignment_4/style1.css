@@ -1,0 +1,47 @@
+body{
+    background-color: aqua;
+    background-image: url(Images/div_background_3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-attachment: scroll;
+    text-align: center;
+    margin: 0;
+    padding: 15%;
+}
+
+.D1{
+    display: flex;
+}
+
+#D2{
+    padding-left: 20%;
+    background-attachment: scroll;
+    flex: 1;
+}
+
+#D3{
+    background-attachment: scroll;
+   
+    flex: 2;
+}
+
+a{
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    
+}
+
+a:hover{
+    background-color: aquamarine;
+    color: black;
+}
+

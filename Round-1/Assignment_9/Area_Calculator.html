@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <link rel="icon" href="Images/icon_2.png">
+    
+    <title>Area Calculator</title>
+
+</head>
+
+<body class="bg-info">  
+    <h1 class="m-5 text-center fw-bold">CALCULATOR</h1>
+
+    <div class="ms-4 mb-4">
+        <h3 class="mb-4">Area of Circle</h3>
+        <label class="fs-4" for="radius"> Enter Radius : </label>
+        <input type="number" id="radius" required>
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="calculateCircleArea()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="circle"></p>
+    </div>
+
+    <script>
+        function calculateCircleArea() {
+            const radius = parseFloat(document.getElementById("radius").value);
+
+            // Using the formula for the area of a circle: π * r^2
+            const area = Math.PI * Math.pow(radius, 2);
+
+            document.getElementById("circle").innerText = "Area of the circle: " + area.toFixed(2);
+        }
+    </script>
+
+    <div class="ms-4 mb-4 mt-5">
+        <h3 class="mb-4">Area of Triangle</h3>
+        <label class="fs-4 mb-2" for="side1">Enter the length of side 1:</label>
+        <input type="number" id="side1" required><br>
+
+        <label class="fs-4 mb-2" for="side2">Enter the length of side 2:</label>
+        <input type="number" id="side2" required><br>
+
+        <label class="fs-4 mb-2" for="side3">Enter the length of side 3:</label>
+        <input type="number" id="side3" required>
+
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="calculateTriangleArea()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="triangle"></p>
+    </div>  
+
+    <script>
+        function calculateTriangleArea() {
+            const side1 = parseFloat(document.getElementById("side1").value);
+            const side2 = parseFloat(document.getElementById("side2").value);
+            const side3 = parseFloat(document.getElementById("side3").value);
+
+            // Using Heron's formula to calculate the area
+            const s = (side1 + side2 + side3) / 2;
+            const area = Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+
+            document.getElementById("triangle").innerText = "Area of the triangle: " + area.toFixed(2);
+        }
+    </script>
+
+    <div class="ms-4 mb-4">
+        <h3 class="mb-4">Factorial Calculator</h3>
+        <label class="fs-4" for="number"> Enter a Number : </label>
+        <input type="number" id="number" required>
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="calculateFactorial()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="factorial"></p>
+    </div>
+
+    <script>
+        function calculateFactorial() {
+            const number = parseInt(document.getElementById("number").value);
+
+            if (number < 0) {
+                document.getElementById("result").innerText = "Factorial is not defined for negative numbers.";
+                return;
+            }
+
+            let factorial = 1;
+
+            for (let i = 2; i <= number; i++) {
+                factorial *= i;
+            }
+
+            document.getElementById("factorial").innerText = "Factorial: " + factorial;
+        }
+    </script>
+
+    <div class="ms-4 mb-4">
+        <h3 class="mb-4">Prime Number Calculator</h3>
+        <label class="fs-4" for="number"> Enter a Number : </label>
+        <input type="number" id="number" required>
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="checkPrime()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="prime"></p>
+    </div>
+
+    <script>
+        function checkPrime() {
+            const number = parseInt(document.getElementById("number").value);
+
+            if (number <= 1) {
+                document.getElementById("result").innerText = "Not a prime number.";
+                return;
+            }
+
+            let isPrime = true;
+
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) 
+            {
+                document.getElementById("result").innerText = "It's a prime number!";
+            } 
+            else
+            {
+                    document.getElementById("result").innerText = "Not a prime number.";
+            }
+        }
+    </script>
+
+    <div class="ms-4 mb-4">
+        <h3 class="mb-4">Simple Interest Calculator</h3>
+        <label class="fs-4" for="principal"> Enter the Principal Amount : </label>
+        <input class="ms-1" type="number" id="principal" required><br>
+
+        <label class="fs-4 for="rate">Enter the Interest Rate : </label>
+        <input class="ms-5" type="number" id="rate" required placeholder="Percentage"><br>
+
+        <label class="fs-4 for="time">Enter the Time Period :</label>
+        <input class="ms-5" type="number" id="time" required placeholder="Years">
+
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="calculateSimpleInterest()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="interest"></p>
+    </div>
+
+    <script>
+        function calculateSimpleInterest() {
+            const principal = parseFloat(document.getElementById("principal").value);
+            const rate = parseFloat(document.getElementById("rate").value);
+            const time = parseFloat(document.getElementById("time").value);
+
+            const interest = (principal * rate * time) / 100;
+
+            document.getElementById("interest").innerText = "Simple Interest: " + interest.toFixed(2);
+        }
+    </script>
+
+    <div class="ms-4 mb-4">
+        <h3 class="mb-4">Simple Interest Calculator</h3>
+        <label class="fs-4 for="inputString">Enter a String : </label>
+        <input type="text" id="inputString" required>
+
+        <button type="button" class="btn btn-dark text-center ms-3 p-1" onclick="findVowels()"><h4>CALCULATE</h4></button>
+        <p class="mt-4 fs-4" id="vowels"></p>
+    </div>
+
+    <script>
+        function findVowels() {
+            const inputString = document.getElementById("inputString").value;
+            const vowels = inputString.match(/[aeiouAEIOU]/g);
+            const vowelCount = vowels ? vowels.length : 0;
+
+            document.getElementById("vowels").innerText = "Number of vowels: " + vowelCount;
+        }
+    </script>
+
+</body>
+</html>
